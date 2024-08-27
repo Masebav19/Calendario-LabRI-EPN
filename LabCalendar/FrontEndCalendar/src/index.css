@@ -21,84 +21,101 @@
   
   .Return-date{
     margin: 0;
-    flex: 1;
     width: 30px;
     text-align: center;
-    flex-basis: 20vw;
     cursor: pointer;
   }
   .Calendar{
-    justify-content: center;
+    height: 100vh;
+    overflow-y: auto;
+    width: 100vw;
     flex: 2;
   }
   .Next-Date{
     text-align: center;
-    flex-basis: 20vw;
+    width: 30px;
     cursor: pointer;
   }
   .Nav-calendar-type{
     display: flex;
-    flex-direction: column;
-    padding: 8px;
+    flex-direction: row;
+    padding: 5px;
     height: auto;
     box-sizing: border-box;
     border: 1px solid #001b24bd;
     border-radius: 10px;
-    background: #001b246e;
+    background: #3a3a3a6e;
     position: fixed;
     top:0;
-    width: 8vw;
+    left: 30px;
+    width: 1256px;
 
     .calendar-type-option{
+      flex: 1;
+      text-align: center;
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-content: center;
-
-      border: 1px solid #0099cc;
-      border-radius: 20px;
-    }
-    .calendar-type-option:hover{
-      width: auto;
-      justify-content: flex-start;
-      padding-bottom: 20px;
-      padding: 10px;
-      transition: all ease 0.5s;
-      cursor: pointer;
-      span{
-        padding-left: 8px;
+      flex-direction: column;
+      img{
+        height: 30px;
       }
     }
-  }
-  .Nav-calendar-type:hover{
-    width: 8vw;
-    transition: all ease 0.5s;
-    border: 1px solid #0099cc;
-    padding: 3px;
-    .calendar-type-option{
-      justify-content: flex-start;
+    .calendar-type-option:hover{
+      border: 1px solid white;
+      box-shadow: 0px 0px 5px white;
+      transition: all ease 0.7s;
+    }
+    .calendar-type-option:hover img{
+      transform: scale(1.2);
+      transition: all ease 0.5s;
+    }
+    .calendar-type-option:hover span{
+      transform: scale(1.2);
+      transition: all ease 0.5s;
     }
   }
 }
 .DayNames-container{
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   align-content: center;
   text-align: center;
+  position: fixed;
+
+  width: 1256px;
   & span{
     box-sizing: border-box;
     border: 0.1vh solid white;
     padding: 3vh;
     flex: 1;
-    width: 137px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 137px;
+    width: auto;
+    flex:1;
+  } */
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 1256px;
+  top: 100px;
+  box-sizing: border-box;
+  background: #00000086;
+  .info-Calendar{
+    display: flex;
+    flex-direction: row;
+    & span{
+      box-sizing: border-box;
+      border: 0.1vh solid white;
+      padding: 3vh;
+      flex: 1;
+      width: auto;
+      flex:1;
+    }
   }
   
 }
 
 .daysCalendar-container{
+  position: relative;
+  top: 180px;
+  width: 1256px;
   display: grid;
   box-sizing: border-box;
   grid-template-columns: repeat(7,1fr);
@@ -110,7 +127,7 @@
     display: flex;
     flex-direction: column;
     height: 68px;
-    width: 135px;
+    width: auto;
     overflow-y: hidden;
   }
   > .day-Month-container:hover{
@@ -163,12 +180,15 @@
   display: grid;
   box-sizing: border-box;
   grid-template-columns: repeat(8,1fr);
+  position: relative;
+  top: 180px;
+  width: 1256px;
   >span{
     padding: 0;
     display: flex;
     flex-direction: column;
     height: 68px;
-    width: 135px;
+    width: auto;
     overflow-y: hidden;
   }
   > .day-Month-container:hover{
@@ -220,7 +240,7 @@
     box-sizing: border-box;
     height: auto;
     background: transparent;
-    width: 137px;
+    width: auto;
     .Date-Info{
       text-align: center;
     }

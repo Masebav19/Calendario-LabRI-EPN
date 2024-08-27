@@ -125,8 +125,6 @@ function App() {
             <img src="./public/calendar.svg" alt="Mes" />
             <span>Mes</span>
           </nav>
-       
-
           <nav className='calendar-type-option' onClick={handleChangeWeek7}>
             <img src="./public/week.svg" alt="7 Días" />
             <span>7 Días</span>

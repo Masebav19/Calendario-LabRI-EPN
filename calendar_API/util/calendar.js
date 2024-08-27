@@ -81,7 +81,7 @@ export async function getWeekInfo(year,mount,date,action,n){
         yearInfo = actualDate.getFullYear()
     }   
     const DaysPeerWeek = Array(n).fill(null)
-    if(n=== '7') actualDate.setDate(actualDate.getDate()-(actualDate.getDay()-1))
+    if(n=== 7) actualDate.setDate(actualDate.getDate()-(actualDate.getDay()-1))
     const holidays = await MysqlClient.getAllholidays()
     const sesionInfo = await MysqlClient.getLabSession(actualDate.getMonth())
     for (let i=0; i< DaysPeerWeek.length;i++){

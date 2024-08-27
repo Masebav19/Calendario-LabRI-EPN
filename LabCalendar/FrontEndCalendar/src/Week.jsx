@@ -28,18 +28,23 @@ const  ReturnWeekCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatu
     return(
       <>
       <nav className='Calendar'>
-      <h2>{''.concat(MounthName[dateInfo.Mounth],' de ',dateInfo.Year)}</h2>
         <div className="DayNames-container">
-          {
-            DaysNames.map(dayName =>{
-              return(
-                <span
-                key={dayName}>
-                  {dayName}
-                </span>
-              )
-            })
-          }
+            <div className="info-Calendar">
+              <header>{''.concat(MounthName[dateInfo.Mounth],' de ',dateInfo.Year)}</header>
+              </div>
+              
+            <div className="info-Calendar">
+            {
+                DaysNames.map(dayName =>{
+                  return(
+                    <span
+                    key={dayName}>
+                      {dayName}
+                    </span>
+                  )
+                })
+              }
+            </div>
         </div>
         <div className="weekCalendar-container">
             <span className="day-week-container">

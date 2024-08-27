@@ -27,9 +27,13 @@ const  ReturnCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatus,Se
     return(
       <>
       <nav className='Calendar'>
-      <h2>{''.concat(MounthName[dateInfo.Mounth],' de ',dateInfo.Year)}</h2>
         <div className="DayNames-container">
-          {
+          <div className="info-Calendar">
+          <header>{''.concat(MounthName[dateInfo.Mounth],' de ',dateInfo.Year)}</header>
+          </div>
+          
+        <div className="info-Calendar">
+        {
             DaysNames.map(dayName =>{
               return(
                 <span
@@ -39,6 +43,8 @@ const  ReturnCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatus,Se
               )
             })
           }
+        </div>
+          
         </div>
         <div className="daysCalendar-container">
           {
