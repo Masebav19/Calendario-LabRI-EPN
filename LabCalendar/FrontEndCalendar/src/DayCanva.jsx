@@ -5,8 +5,6 @@ function DayCanva({sesionInfo}){
     useEffect(()=>{
         if(sesionInfo){
             const canvas = canvasRef.current;
-            const TotalHeigth = canvas.height
-            const partOfHeigth = TotalHeigth/(16*4) // el ancho de cada 15 minutos 
             const ctx = canvas.getContext('2d');
             const container = canvas.parentElement;
             const containerWidth = container.clientWidth;
@@ -36,9 +34,9 @@ function DayCanva({sesionInfo}){
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 // Dibuja el texto dentro del rectángulo
-                ctx.fillText(`${session.Asunto}`, 70, y+20);
-                ctx.fillText(`Desde ${session.Hora_inicial} hasta ${session.Hora_inicial}`,60, y+35);
-                ctx.fillText(`Anfitrion ${session.Responsable}`, 60, y+50);
+                ctx.fillText(`${session.Asunto}`, 70, y+40);
+                ctx.fillText(`Desde ${session.Hora_inicial} hasta ${session.Hora_inicial}`,60, y+55);
+                ctx.fillText(`Anfitrion ${session.Responsable}`, 60, y+70);
 
             })
         }

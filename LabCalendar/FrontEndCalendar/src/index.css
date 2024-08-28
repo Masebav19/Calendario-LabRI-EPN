@@ -89,6 +89,7 @@
   top: 70px;
   box-sizing: border-box;
   background: #d3e4f8;
+
   
   .info-Calendar{
     text-align: center;
@@ -137,7 +138,8 @@
     border-right: none;
   } */
   >span{
-    padding: 0;
+    padding-left: 6px;
+    padding-right: 6px;
     display: flex;
     flex-direction: column;
     height: 68px;

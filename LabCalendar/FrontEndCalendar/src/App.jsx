@@ -5,7 +5,7 @@ import CreateSession from './createSession.jsx'
 import DeleteSession from './deleteSession.jsx'
 import ReturnCalendar from './Month.jsx'
 import ReturnWeekCalendar from './Week.jsx'
-
+import LittleWeek from './LittleWeek.jsx'
 
 async function handleRequest(calendarType,ReqType,Data) {
   const RouteType = calendarType === "Month" ? 'Dayspeermounth':calendarType === "week7"?'Dayspeerweek/7':'Dayspeerweek/3'
@@ -143,6 +143,14 @@ function App() {
           SessionAction={SessionAction}
           />}
           {daysPeerMounth && TypeCalendar === 'week7' && <ReturnWeekCalendar 
+          daysPeerMounth ={daysPeerMounth}
+          dateInfo = {dateInfo.current}
+          SetDetailSession = {SetDetailSession}
+          SetLogStatus= {SetLogStatus}
+          SessionData={SessionData}
+          SessionAction={SessionAction}
+          />}
+          {daysPeerMounth && TypeCalendar === 'week3' && <LittleWeek 
           daysPeerMounth ={daysPeerMounth}
           dateInfo = {dateInfo.current}
           SetDetailSession = {SetDetailSession}
