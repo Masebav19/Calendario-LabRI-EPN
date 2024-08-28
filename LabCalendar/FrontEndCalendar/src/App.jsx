@@ -29,30 +29,40 @@ function App() {
   const [daysPeerMounth,SetDayPeerMounth] = useState(undefined)
   const [LogStatus,SetLogStatus] = useState(false)
   const [LogUser,SetLogUser] = useState({})
-  const TypeCalendar = useRef('Month')
+  const [TypeCalendar,SetTypeCalendar] = useState('Month')
   const dateInfo = useRef(undefined)
   const SessionData = useRef({})
   const SessionAction = useRef('')
 
   useEffect(() => {
-    handleRequest(TypeCalendar.current,'GET',{}).then(data => {
-      SetDayPeerMounth(data.DaysPeerMounth)
+    handleRequest(TypeCalendar,'GET',{}).then(data => {
+      if(TypeCalendar === 'Month') {
+        SetDayPeerMounth(data.DaysPeerMounth)
+      } else{
+        SetDayPeerMounth(data.DaysPeerWeek)
+      }
       dateInfo.current=data.dateInfo
     })
   },[])
   useEffect(() => {
-    handleRequest(TypeCalendar.current,'GET',{}).then(data => {
-      SetDayPeerMounth(data.DaysPeerMounth)
-      dateInfo.current=data.dateInfo
-    })   
+    if(!daysPeerMounth){
+      handleRequest(TypeCalendar,'GET',{}).then(data => {
+        if(TypeCalendar === 'Month') {
+          SetDayPeerMounth(data.DaysPeerMounth)
+        } else{
+          SetDayPeerMounth(data.DaysPeerWeek)
+        }
+        dateInfo.current=data.dateInfo
+      })   
+    }
   },[LogStatus])
   function HandleBack(){
-      const Index = TypeCalendar.current === 'Month' ? (daysPeerMounth.length/2).toFixed(0): 0
+      const Index = TypeCalendar === 'Month' ? (daysPeerMounth.length/2).toFixed(0): 0
       const year = daysPeerMounth[Index].Year
       const mount= daysPeerMounth[Index].Mounth
       const date = daysPeerMounth[Index].Date
-      handleRequest(TypeCalendar.current,'POST',{year,mount,date,action:'Back'}).then(data => {
-        if(TypeCalendar.current === 'Month') {
+      handleRequest(TypeCalendar,'POST',{year,mount,date,action:'Back'}).then(data => {
+        if(TypeCalendar === 'Month') {
           SetDayPeerMounth(data.DaysPeerMounth)
         } else{
           SetDayPeerMounth(data.DaysPeerWeek)
@@ -62,12 +72,12 @@ function App() {
   }
 
   function HandleForward(){
-    const Index = TypeCalendar.current === 'Month' ? (daysPeerMounth.length/2).toFixed(0): 0
+    const Index = TypeCalendar === 'Month' ? (daysPeerMounth.length/2).toFixed(0): 0
     const year = daysPeerMounth[Index].Year
     const mount= daysPeerMounth[Index].Mounth
     const date = daysPeerMounth[Index].Date
-    handleRequest(TypeCalendar.current,'POST',{year,mount,date,action:'Fordward'}).then(data => {
-      if(TypeCalendar.current === 'Month') {
+    handleRequest(TypeCalendar,'POST',{year,mount,date,action:'Fordward'}).then(data => {
+      if(TypeCalendar === 'Month') {
         SetDayPeerMounth(data.DaysPeerMounth)
       } else{
         SetDayPeerMounth(data.DaysPeerWeek)
@@ -76,44 +86,30 @@ function App() {
     })
   }
 
-  // async function handleRequest(year,mount,date,action){
-  //   const result = await fetch('http://172.31.36.30:4001/time/Dayspeermounth',{
-  //     method: 'POST',
-  //     headers: {"Content-Type": "application/json",},
-  //     body: JSON.stringify({
-  //       year: year,
-  //       mount: mount,
-  //       date: date,
-  //       action: action
-  //     })
-  //   })
-  //   const data = await result.json()
-  //   return data
-  // }
   function handleChangeMonth(){
-    if (TypeCalendar.current !== 'Month') {
-      TypeCalendar.current = 'Month'
+    if (TypeCalendar !== 'Month') {
       handleRequest('Month','GET',{}).then(data =>{
-        SetDayPeerMounth(data.DaysPeerMounth)
         dateInfo.current=data.dateInfo
+        SetDayPeerMounth(data.DaysPeerMounth)
+        SetTypeCalendar('Month')
       })
     }
   }
   function handleChangeWeek7(){
-    if (TypeCalendar.current !== 'week7') {
-      TypeCalendar.current = 'week7'
+    if (TypeCalendar !== 'week7') {
       handleRequest('week7','GET',{}).then(data =>{
-        SetDayPeerMounth(data.DaysPeerWeek)
         dateInfo.current=data.dateInfo
+        SetDayPeerMounth(data.DaysPeerWeek)
+        SetTypeCalendar('week7')
       })
     }
   }
   function handleChangeWeek3(){
-    if (TypeCalendar.current !== 'week3') {
-      TypeCalendar.current = 'week3'
+    if (TypeCalendar !== 'week3') {
       handleRequest('week3','GET',{}).then(data =>{
-        SetDayPeerMounth(data.DaysPeerWeek)
         dateInfo.current=data.dateInfo
+        SetDayPeerMounth(data.DaysPeerWeek)
+        SetTypeCalendar('week3')
       })
     }
   }
@@ -138,7 +134,7 @@ function App() {
           <section className='Return-date' onClick={HandleBack}>
             <img src="./public/arrow_back.svg" alt="Back" />
           </section>
-          {daysPeerMounth && TypeCalendar.current === 'Month' && <ReturnCalendar 
+          {daysPeerMounth && TypeCalendar === 'Month' && <ReturnCalendar 
           daysPeerMounth ={daysPeerMounth}
           dateInfo = {dateInfo.current}
           SetDetailSession = {SetDetailSession}
@@ -146,7 +142,7 @@ function App() {
           SessionData={SessionData}
           SessionAction={SessionAction}
           />}
-          {daysPeerMounth && TypeCalendar.current === 'week7' && <ReturnWeekCalendar 
+          {daysPeerMounth && TypeCalendar === 'week7' && <ReturnWeekCalendar 
           daysPeerMounth ={daysPeerMounth}
           dateInfo = {dateInfo.current}
           SetDetailSession = {SetDetailSession}
@@ -178,11 +174,13 @@ function App() {
           SetLogStatus={SetLogStatus}
           SetLogUser= {SetLogUser}
           SessionData={SessionData}
+          SetDayPeerMounth={SetDayPeerMounth}
           />: (LogStatus && LogUser.User && SessionAction.current === 'Delete') && <DeleteSession
           LogUser= {LogUser}
           SetLogStatus={SetLogStatus}
           SetLogUser= {SetLogUser}
           SetDetailSession={SetDetailSession}
+          SetDayPeerMounth={SetDayPeerMounth}
           SessionInfo = {DetailSession}
           />}  
     </>

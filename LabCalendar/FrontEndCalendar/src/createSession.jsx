@@ -1,5 +1,5 @@
 
-function CreateSession({LogUser,SetLogStatus,SetLogUser,SessionData}){
+function CreateSession({LogUser,SetLogStatus,SetLogUser,SessionData,SetDayPeerMounth}){
     if(LogUser.Type.localeCompare("Estudiante-Técnico")===0 ||LogUser.Type.localeCompare("Estudiante-Docente")===0 ){
         alert("Solo puede borrar la sessión un docente o un técnico docente")
         SetLogStatus(false)
@@ -31,14 +31,15 @@ function CreateSession({LogUser,SetLogStatus,SetLogUser,SessionData}){
                     alert(session.error[0].message)
                     SetLogStatus(false)
                     SetLogUser({})
+
                 }else{
                     alert(`Session creada:
                         Asunto: ${session.Asunto}
                         Fecha: ${session.Year}-${session.Month}-${session.Date}
                         Anfitrio: ${session.Responsable}`)
+                        SessionData.current = {}
                         SetLogStatus(false)
                         SetLogUser({})
-                        SessionData.current = {}
                 }
                 
             })

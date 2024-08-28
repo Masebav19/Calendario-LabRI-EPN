@@ -1,6 +1,10 @@
-function Info({SessionInfo,SetDetailSession}){
+function Info({SessionInfo,SetDetailSession,SessionAction,SetLogStatus}){
     function handleResetInfo(){
         SetDetailSession({})
+    }
+    function handleDelete(){
+        SessionAction.current = 'Delete'
+        SetLogStatus(true)
     }
     return(
         <>
@@ -8,7 +12,7 @@ function Info({SessionInfo,SetDetailSession}){
                 <span className="Close-button" onClick={handleResetInfo}>
                     <img src="../public/close.svg" alt="Close" />
                 </span>
-                <span className="delete-button">
+                <span className="delete-button" onClick={handleDelete}>
                     <img src="../public/delete.svg" alt="Close" />
                 </span>
             </div>
@@ -20,6 +24,7 @@ function Info({SessionInfo,SetDetailSession}){
                 {SessionInfo.Periodicidad !== "Ninguno" && 
                 <li>Repetir: {SessionInfo.Periodicidad}</li>}
                 <li>Correo anfitrio: {SessionInfo.Correo_responsable} </li>
+                <li>Desde {SessionInfo.Hora_inicial} hasta {SessionInfo.Hora_final}</li>
             </ul>
         </>
     )

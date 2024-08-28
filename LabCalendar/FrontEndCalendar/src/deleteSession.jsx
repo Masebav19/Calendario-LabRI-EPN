@@ -21,6 +21,7 @@ function DeleteSession({LogUser,SetLogStatus,SetLogUser,SetDetailSession,Session
                     SetLogStatus(false)
                     SetDetailSession({})
                     SetLogUser({})
+                    SetDayPeerMounth({})
                 }else{
                     alert(`Session Borrada:
                         Asunto: ${session.Asunto}
@@ -29,6 +30,7 @@ function DeleteSession({LogUser,SetLogStatus,SetLogUser,SetDetailSession,Session
                         SetLogStatus(false)
                         SetDetailSession({})
                         SetLogUser({})
+                        SetDayPeerMounth({})
                 }
                 
             })

@@ -15,11 +15,12 @@ function ShowContent({SetshowContent,content}){
                         Sesiones de Laboratorio
                     </h3>
                 </header>
-                <ul>
+                
                     {
                         content.sesionInfo.map(el =>{
                             return(
                                 <>
+                                <ul key={el.Id + '-SessionInfo'}>
                                 <strong>{el.Asunto}</strong>
                                     <li>
                                         Fecha: {`${el.Year}-${el.Year}-${el.Date}`}
@@ -40,12 +41,12 @@ function ShowContent({SetshowContent,content}){
                                     <li>
                                         <a href={`mailto:${el.Correo_responsable}`}>{el.Correo_responsable}</a>
                                     </li>
+                                </ul>
                                 </>
                                     
                             )
                         })
                     }
-                </ul>
 
             </div>
         </>  

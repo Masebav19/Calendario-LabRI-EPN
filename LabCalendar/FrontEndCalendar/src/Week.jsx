@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import ShowContent from './showContent.jsx'
-
+import DayCanva  from './DayCanva.jsx'
 const DaysNames =["Hora","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"]
 const MounthName = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
 const times = length => Array.from({length},(_,i)=>i)
@@ -39,7 +39,7 @@ const  ReturnWeekCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatu
                   return(
                     <span
                     key={dayName}>
-                      {dayName}
+                      {dayName+'week'}
                     </span>
                   )
                 })
@@ -54,7 +54,8 @@ const  ReturnWeekCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatu
                             return(
                                 <div className="nav-conatiner week">
                                     <span 
-                                    className='Date-Info'>
+                                    className='Date-Info'
+                                    key={`${7+i}:${(15*k).toString().padStart(2,'0')}`}>
                                         <small>
                                             {`${7+i}:${(15*k).toString().padStart(2,'0')}`}
                                         </small>
@@ -73,29 +74,22 @@ const  ReturnWeekCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatu
                 <>
                   <span
                     className="day-week-container"
-                    key={day.Id}
-                    style={day.isToday ? {background: '#0099cc44'}:{}} title={`${day.Date} de ${MounthName[day.Mounth]} del ${day.Year}`}>
-                    {
-                        times(16).map(i=>{
-                            return times(4).map(k =>{
-                                return(
-                                    <div className="nav-conatiner week"
-                                    style={ day.sesionInfo.find(session => 
-                                        ((i+7+k/4) >= (Number(session.Hora_inicial.split(':')[0]))+Number(session.Hora_inicial.split(':')[1])/15)&&
-                                        ((i+7+k/4) <= (Number(session.Hora_final.split(':')[0]))+Number(session.Hora_final.split(':')[1])/15)
-                                    ) ? {background: "#0099cc"}:{}}
-                                    >
-                                        {
-                                            day.sesionInfo.find(session => session.Hora_inicial === `${i+7}:${(15*k).toString().padStart(2,'0')}`) && 
-                                            <small>
-                                                {day.sesionInfo.find(session => session.Hora_inicial === `${i+7}:${(15*k).toString().padStart(2,'0')}`).Asunto}
-                                            </small>
-                                        }
-                                    </div>
-                                )
-                            })
-                        })
-                    }
+                    key={day.Id+'-week'}
+                    style={day.isToday ? {background: '#0099cc44'}:{}} title={`${day.Date} de ${MounthName[day.Mounth]} del ${day.Year}`}
+                    onClick={() => GetContent(day.Id)}>
+                    <nav 
+                      key={''.concat(day.Id,'-Nav')}
+                      className='Add-Session week'
+                      onClick={()=>handleLog(day.Id)}
+                      hidden={day.Feriado!=="Ninguno" || day.Mounth!==dateInfo.Mounth}
+                      style= {{position: "absolute"}}>
+                      <img 
+                      key={''.concat(day.Id,'-img')}
+                      src="./public/new_calendar.svg" alt="Nuevo" />
+                    </nav>
+                    <DayCanva 
+                    sesionInfo= {day.sesionInfo}
+                    />
                   </span>
                 </> 
               )
@@ -107,8 +101,7 @@ const  ReturnWeekCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatu
       SetshowContent= {SetshowContent}
       content = {content.current}
       />}
-      </>
-      
+      </> 
     )
 }
 

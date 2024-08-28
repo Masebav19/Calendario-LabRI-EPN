@@ -55,43 +55,39 @@ const  ReturnCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatus,Se
                   className="day-Month-container"
                   key={day.Id}
                   style={day.isToday ? {background: '#0099cc44'}:{}} title={`${day.Date} de ${MounthName[day.Mounth]} del ${day.Year}`}>
-                  <div className="nav-conatiner">
+                  <div className="nav-conatiner"
+                  key={day.Date+'-'+day.Month+'-'+day.Year+'-navContainer'}>
                     <span 
-                    key={''.concat(day.Id,'-',day.Date)}
                     className='Date-Info'
                     style={dateInfo.Mounth!==day.Mounth ?{opacity:'20%'}:{}}
                     >
                       {day.Date}
                     </span>
                     <nav 
-                      key={''.concat(day.Id,'-Nav')}
                       className='Add-Session'
                       onClick={()=>handleLog(day.Id)}
                       hidden={day.Feriado!=="Ninguno" || day.Mounth!==dateInfo.Mounth}>
                       <img 
-                      key={''.concat(day.Id,'-img')}
                       src="./public/new_calendar.svg" alt="Nuevo" />
                     </nav>
                     {day.sesionInfo.length>2&&
                     <nav className='show-content'
                     onClick={()=> GetContent(day.Id)}>
-                      <img src="./public/signup.svg" alt="" />
+                      <img src="./public/signup.svg" alt="More Info" key={''.concat(day.Id,'-MoreInfo','-img')}/>
                     </nav>}
                   </div>
                   {day.Feriado!== "Ninguno"&& <small 
-                    key={''.concat(day.Id,'-Holiday')}
                     className='Feriado'>
                       {day.Feriado}
                     </small>}
                   {day.sesionInfo&&day.Feriado==="Ninguno" && day.sesionInfo.map(element => {
                     return(
                     <small 
-                    id={''.concat(`${element.Year}-${element.Month}-${element.Date}`,'-',element.Id)}
-                    key={''.concat(`${element.Year}-${element.Month}-${element.Date}`,'-',element.Id)}
+                    key={element.Id}
                     className='Session'
                     onClick={() => handleSessionInfo(element.Id)}
-                    style={element.Periodicidad === 'Diariamente' ? {color: '#f7e8ca',fontStyle: 'italic'}:
-                    element.Periodicidad === 'Semanalmente' ? {color: '#fff',fontStyle: 'italic'}:{}}>
+                    style={element.Periodicidad === 'Diariamente' ? {color: '#ffd',fontStyle: 'italic'}:
+                    element.Periodicidad === 'Semanalmente' ? {color: '#ffc',fontStyle: 'italic'}:{}}>
                       {element.Asunto}
                     </small>
                   )})}
