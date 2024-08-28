@@ -3,8 +3,8 @@
     box-sizing: border-box;
     grid-template-columns: repeat(4,1fr);
     position: relative;
-    top: 155px;
-    width: 1256px;
+    top: 0vh;
+    width: 93vw;
     .day-Lweek-container{
       .nav-conatiner.week:hover{
         box-shadow: 0px 0px 8px #09c;
@@ -19,7 +19,7 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      height: 68px;
+      height: 10.51vh;
       width: auto;
       overflow-y: hidden;
     }
@@ -32,7 +32,7 @@
       width: auto;
       .nav-conatiner.Lweek{
         border: 1px solid #40c5f156;
-        height: 30px;
+        height: 4.637vh;
         small{
           overflow: visible;
           z-index: 3;

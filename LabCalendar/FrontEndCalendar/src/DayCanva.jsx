@@ -31,12 +31,12 @@ function DayCanva({sesionInfo}){
 
                 ctx.font = '10px';
                 ctx.fillStyle = 'white';
-                ctx.textAlign = 'center';
+                ctx.textAlign = 'left';
                 ctx.textBaseline = 'middle';
                 // Dibuja el texto dentro del rectángulo
-                ctx.fillText(`${session.Asunto}`, 70, y+40);
-                ctx.fillText(`Desde ${session.Hora_inicial} hasta ${session.Hora_inicial}`,60, y+55);
-                ctx.fillText(`Anfitrion ${session.Responsable}`, 60, y+70);
+                ctx.fillText(`${session.Asunto}`,10, y+40);
+                ctx.fillText(`Desde ${session.Hora_inicial} hasta ${session.Hora_inicial}`,10, y+55);
+                ctx.fillText(`Anfitrion ${session.Responsable}`, 10, y+70);
 
             })
         }
