@@ -100,7 +100,7 @@ body{
     flex-direction: row;
     border-bottom: 1px solid #00000055;
     align-content: space-between;
-    & span{
+    span{
       box-sizing: border-box;
       padding: 3vh;
       flex: 1;
@@ -116,7 +116,7 @@ body{
   display: grid;
   box-sizing: border-box;
   grid-template-columns: repeat(7,1fr);
-  & span{
+  span{
     border-bottom: 0.1vh solid #00000055;
     /* border-right: 0.1vh solid #00000055; */
   }
@@ -171,7 +171,7 @@ body{
     cursor: pointer;
     border: 0;
     padding: 0;
-    &img{
+    img{
       position: relative;
     }
   }
@@ -389,6 +389,68 @@ body{
     li{
       padding: 2px;
       font-style: italic;
+    }
+  }
+}
+
+@media( width > 500px){
+  .return-home.container{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #d3e4f8aa;
+    border: 2px solid #0296c7;
+    height: 5vh;
+    width: 5vw;
+    cursor: pointer;
+    span{
+      display: none;
+      width: 0;
+      visibility: hidden;
+    }
+    img{
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .return-home.container:hover{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 7vw;
+    transition: all ease 0.8s;
+    border-radius: 20px;
+  }
+  .return-home.container:hover span{
+    display: flex;
+    visibility: visible;
+    width: 100%;
+    transition: all ease 0.7s;
+  }
+  .return-home.container:hover img{
+    width: 50%;
+  }
+}
+@media( width <= 500px){
+  .return-home.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 16vw;
+    transition: all ease 0.8s;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #d3e4f8aa;
+    border: 2px solid #0296c7;
+    height: 5vh;
+    span{
+      display: flex;
+      visibility: visible;
+      width: 100%
+    }
+    img{
+      width: 50%;
     }
   }
 }

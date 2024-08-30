@@ -45,7 +45,6 @@ function App() {
     })
   },[])
   useEffect(() => {
-    if(!daysPeerMounth){
       handleRequest(TypeCalendar,'GET',{}).then(data => {
         if(TypeCalendar === 'Month') {
           SetDayPeerMounth(data.DaysPeerMounth)
@@ -54,7 +53,6 @@ function App() {
         }
         dateInfo.current=data.dateInfo
       })   
-    }
   },[LogStatus])
   function HandleBack(){
       const Index = TypeCalendar === 'Month' ? (daysPeerMounth.length/2).toFixed(0): 0
@@ -113,6 +111,10 @@ function App() {
       })
     }
   }
+  function handleHome(){
+    window.location.replace("http://172.31.36.30:5000")
+  }
+  
   return (
     <>
       <span className='Calendar-container'>
@@ -190,7 +192,11 @@ function App() {
           SetDetailSession={SetDetailSession}
           SetDayPeerMounth={SetDayPeerMounth}
           SessionInfo = {DetailSession}
-          />}  
+          />}
+        <div className="return-home container" onClick={handleHome}>
+          <img src="./public/home.svg" alt="Home" />
+          <span>Home</span>
+        </div>  
     </>
   )
 }
