@@ -78,6 +78,7 @@ const  ReturnWeekCalendar=({daysPeerMounth,dateInfo,SetDetailSession,SetLogStatu
                       onClick={()=>handleLog(day.Id)}
                       hidden={day.Feriado!=="Ninguno" || day.Mounth!==dateInfo.Mounth}
                       style= {{position: "absolute"}}>
+                        <span>{`${day.Date}-${MounthName[day.Mounth]}`}</span>
                       <img 
                       key={''.concat(day.Id,'-img')}
                       src="./public/new_calendar.svg" alt="Nuevo" />

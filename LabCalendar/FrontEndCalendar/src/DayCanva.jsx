@@ -12,15 +12,15 @@ function DayCanva({sesionInfo}){
             canvas.style.width = `${containerWidth}px`;
             canvas.style.height = `${containerHeight}px`;
             // Ajuste de la resolución del canvas
-            const scale = window.devicePixelRatio || 1;
+            const scale = 1;
             canvas.width = containerWidth * scale;
             canvas.height = containerHeight * scale;
-            ctx.scale(scale, scale)
+            ctx.scale(1, scale)
             sesionInfo.map(session=>{
                 const InitialPos = session.Hora_inicial.split(':').map(value => {return Number(value)})
                 const FinalPos = session.Hora_final.split(':').map(value => {return Number(value)})
-                const InitialyTime = InitialPos[0]+InitialPos[1]/15
-                const FianllyTime = FinalPos[0]+FinalPos[1]/15
+                const InitialyTime = InitialPos[0]+InitialPos[1]/60
+                const FianllyTime = FinalPos[0]+FinalPos[1]/60
                 const y = (canvas.height/16)*(InitialyTime-7)
                 const yf = (canvas.height/16)*(FianllyTime-7)
                 const fillValue = yf-y
@@ -35,7 +35,7 @@ function DayCanva({sesionInfo}){
                 ctx.textBaseline = 'middle';
                 // Dibuja el texto dentro del rectángulo
                 ctx.fillText(`${session.Asunto}`,10, y+40);
-                ctx.fillText(`Desde ${session.Hora_inicial} hasta ${session.Hora_inicial}`,10, y+55);
+                ctx.fillText(`Desde ${session.Hora_inicial} hasta ${session.Hora_final}`,10, y+55);
                 ctx.fillText(`Anfitrion ${session.Responsable}`, 10, y+70);
 
             })
