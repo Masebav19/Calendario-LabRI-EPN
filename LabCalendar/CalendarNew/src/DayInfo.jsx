@@ -1,5 +1,8 @@
 import { MONTHLITTLENAME, MONTHNAME } from "./utils/constants"
-export default function DayInfo ({ dayInfo, dateInfo }) {
+export default function DayInfo ({ dayInfo, dateInfo, SetExtraInfo }) {
+    function handleExtraInfo() {
+        SetExtraInfo({SessionsToShow: dayInfo.sesionInfo, DayInfo: dayInfo})
+    }
     return(
         <div className="day-info-container" title={`${dayInfo.Date}-${MONTHLITTLENAME[dayInfo.Mounth]}-${dayInfo.Year}`}>
             <section className="day-info">
@@ -7,7 +10,7 @@ export default function DayInfo ({ dayInfo, dateInfo }) {
                 {dayInfo.Feriado === 'Ninguno' && dayInfo.Mounth === dateInfo.Mounth && <img src="../public/new_calendar.svg" alt="NewSession" title="Nueva sesión"/>}
             </section>
             {dayInfo.sesionInfo.length > 0 && dayInfo.Feriado === 'Ninguno' && 
-            <section className="Session-info">
+            <section className="Session-info" onClick={() => handleExtraInfo(dayInfo.Id)}>
                 <span>{dayInfo.sesionInfo.length === 1 ? dayInfo.sesionInfo[0].Asunto: `+${dayInfo.sesionInfo.length}`}</span>
             </section>
             }

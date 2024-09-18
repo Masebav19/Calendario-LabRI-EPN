@@ -8,7 +8,6 @@ export default function PanelInfo ({CalendarInfo, PanelInfo,SetCalendarDay}) {
         const SessionSelected = DaySelected.sesionInfo.find(session => session.Id === SessionId)
         SetPSessionInfo({day: DaySelected, Session: SessionSelected})
     }
-    console.log(PSessionInfo)
     return(
         <div className="Panel-container">
             <h3>{`${MONTHNAME[PanelInfo.dateInfo.Mounth]}-${PanelInfo.dateInfo.Year}`}</h3>
@@ -18,7 +17,7 @@ export default function PanelInfo ({CalendarInfo, PanelInfo,SetCalendarDay}) {
                             return day.sesionInfo.map(sessionInfo => {
                                 return(
                                     <>
-                                        <span key={day.Id}>
+                                        <span key={`Panel-${day.Id}`}>
                                         <small>{`${sessionInfo.Hora_inicial}-${sessionInfo.Hora_final}`}</small>
                                         <p onClick={() => handleInfo({DayId: day.Id, SessionId: sessionInfo.Id})}>{`${sessionInfo.Asunto}`}</p>
                                         <img src="../public/delete.svg" alt="Delete session"/>
@@ -31,7 +30,7 @@ export default function PanelInfo ({CalendarInfo, PanelInfo,SetCalendarDay}) {
                         })
                     }
             </section>
-            {PSessionInfo.day && <section>
+            {PSessionInfo.day && <section id='Session-panel-info'>
                 <article>
                     <ul>
                         <li>Asunto: {PSessionInfo.Session.Asunto}</li>

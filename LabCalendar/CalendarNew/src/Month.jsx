@@ -1,7 +1,7 @@
 import { DAYSNAMES } from "./utils/constants"
 import DayInfo from "./DayInfo"
 import './Month.css'
-export default function Month ({ CalendarDay }) {
+export default function Month ({ CalendarDay, SetExtraInfo }) {
 
     return(
         <>
@@ -17,9 +17,10 @@ export default function Month ({ CalendarDay }) {
                    CalendarDay.DaysPeerMounth.map(dayCalendar => {
                     return(
                         <DayInfo 
-                        key={dayCalendar.Id}
+                        key={`Month-${dayCalendar.Id}`}
                         dayInfo={dayCalendar}
                         dateInfo={CalendarDay.dateInfo}
+                        SetExtraInfo = {SetExtraInfo}
                         />
                     )
                    })

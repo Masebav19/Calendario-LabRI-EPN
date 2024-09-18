@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import { fetchRequet } from './utils/requestManeger.js'
 import Month from './Month.jsx'
 import  PanelInfo  from './Panel.jsx'
+import ExtraInfo from './ExtraInfo.jsx'
 function App() {
   const [CalendarType, SetCalendarType] = useState('Month')
   const [CalendarDay, SetCalendarDay] = useState({})
+  const [extraInfo, SetExtraInfo] = useState({})
   useEffect(() => {
     let Route
     if (CalendarType === 'Month') Route = 'Dayspeermounth'
@@ -26,6 +28,14 @@ function App() {
       { CalendarDay.DaysPeerMounth && 
       <Month
       CalendarDay={CalendarDay}
+      SetExtraInfo= {SetExtraInfo}
+      />
+      }
+
+      {extraInfo.SessionsToShow && 
+      <ExtraInfo
+        SessionsToShow={extraInfo.SessionsToShow}
+        DayInfo={extraInfo.DayInfo}
       />
       }
     </main>
