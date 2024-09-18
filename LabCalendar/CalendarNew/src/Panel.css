@@ -1,6 +1,9 @@
 .Panel-container{
     overflow-y: auto;
     height: 100vh;
+    h3{
+        text-align: center;
+    }
     section>span{
         height: 4vh;
         display: flex;
@@ -33,4 +36,14 @@
             transition: scale ease 0.5s;
         }
     }
+    section>article{
+        color: black;
+        font-size: 80%;
+    }
+    section:last-child{
+        border-radius: 10px;
+        background: #48d1ff;
+        padding: 1px;
+    }
+    
 }

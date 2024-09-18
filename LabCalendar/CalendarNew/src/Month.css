@@ -1,12 +1,13 @@
 .Month-container{
     display: grid;
-    grid-template-columns: repeat(7, 7vw);
-    grid-template-rows: repeat(7, 10vh);
+    height: 100vh;
+    grid-template-columns: repeat(7, 18%);
+    grid-template-rows: repeat(7, 10%);
     
     .DayName{
         border: 1px solid #949494d2;
         text-align: center;
-        font-size: 1.5vw;
+        font-size: 110%;
     }
     .day-info-container{
         border: 1px solid #949494d2;
@@ -15,7 +16,7 @@
         display: flex;
         flex: 1;
         justify-content: space-between;
-        font-size: 1vw;
+        font-size: 80%;
         margin-bottom: 10px;
         img{
             cursor: pointer;
