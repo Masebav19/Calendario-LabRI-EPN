@@ -1,0 +1,36 @@
+.Panel-container{
+    overflow-y: auto;
+    height: 100vh;
+    section>span{
+        height: 4vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #1f80ff;
+        border-radius: 5px;
+        padding: 1px;
+        margin: 2vh;
+        small{
+            font-size: 0.6vw;
+            margin-right: 1vw;
+        }
+        p{
+            font-size: 0.8vw;
+            transition: color ease 0.3s; 
+        }
+        p:hover{
+            color: blue;
+            transition: color ease 0.7s;
+            cursor: pointer; 
+        }
+        img{
+            cursor: pointer;
+            width: 1.5vw;
+            transition: scale ease 0.2s;
+        }
+        img:hover{
+            scale: 1.2;
+            transition: scale ease 0.5s;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.Month-container{
+    display: grid;
+    grid-template-columns: repeat(7, 7vw);
+    grid-template-rows: repeat(7, 10vh);
+    
+    .DayName{
+        border: 1px solid #949494d2;
+        text-align: center;
+        font-size: 1.5vw;
+    }
+    .day-info-container{
+        border: 1px solid #949494d2;
+    }
+    .day-info{
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        font-size: 1vw;
+        margin-bottom: 10px;
+        img{
+            cursor: pointer;
+            width: 1.5vw;
+            height: auto;
+        }
+    }
+    .Session-info{
+        padding: 5px;
+        font-size: 0.7vw;
+        height: 2vh;
+        overflow: hidden;
+        background: #1f80ff;
+        border-radius: 5px;
+        border-left: 0.5vw solid #48d1ff;
+        cursor: pointer;
+    }
+    .Holiday-info{
+        font-size: 0.75vw;
+    }
+    .Today{
+        background: #0099ccb2;
+        border-radius: 50%;
+    }
+
+}

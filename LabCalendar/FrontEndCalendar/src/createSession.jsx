@@ -45,7 +45,7 @@ function CreateSession({LogUser,SetLogStatus,SetLogUser,SessionData,SetDayPeerMo
             })
     }
     async function requestCreateSession(object){
-        const result = fetch("http://172.31.36.30:4001/time//NewSession",{
+        const result = fetch("http://172.31.36.30:4001/time/NewSession",{
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({...object})
